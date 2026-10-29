@@ -1,0 +1,14 @@
+
+{
+  "name": "bot-resenha",
+  "version": "1.0.0",
+  "description": "Bot de ranking e moderacao para grupos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "better-sqlite3": "^11.8.1"
+  }
+}
