@@ -1,4 +1,3 @@
-
 {
   "name": "bot-resenha",
   "version": "1.0.0",
@@ -9,6 +8,6 @@
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.18",
-    "better-sqlite3": "^11.8.1"
+    "qrcode-terminal": "^0.12.0"
   }
 }
