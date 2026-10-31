@@ -1,4 +1,4 @@
-
+const qrcode = require("qrcode-terminal");
 const http = require("http");
 const {
   default: makeWASocket,
@@ -92,7 +92,31 @@ async function iniciarBot() {
 
   sock.ev.on("creds.update", saveCreds);
 
-  sock.ev.on("connection.update", ({ connection, lastDisconnect }) => {
+  sock.ev.on("connection.update", ({ connection, lastDisconnect, qr }) => {
+
+  if (qr) {
+    console.log("📲 ESCANEIE O QR CODE ABAIXO:");
+    qrcode.generate(qr, { small: true });
+  }
+
+  if (connection === "open") {
+    console.log("🤖 BOT RESENHA CONECTADO!");
+  }
+
+  if (connection === "close") {
+    const codigo =
+      lastDisconnect?.error?.output?.statusCode;
+
+    console.log("Conexão encerrada:", codigo);
+
+    if (codigo !== DisconnectReason.loggedOut) {
+      setTimeout(iniciarBot, 5000);
+    } else {
+      console.log("Sessão encerrada. Vincule novamente.");
+    }
+  }
+
+});
     if (connection === "open") {
       console.log("BOT RESENHA conectado!");
     }
